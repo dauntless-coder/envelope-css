@@ -1,0 +1,288 @@
+/* 🌈 Background and Typography */
+body {
+  margin: 0;
+  background: linear-gradient(135deg, #ffd1dc 0%, #e0f7fa 100%);
+  font-family: 'Cherry Bomb One', cursive;
+  color: #ff3c88;
+  overflow-x: hidden;
+  overflow-y: auto;
+  position: relative;
+}
+
+/* ✨ Floating Stars */
+.floating-stars {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-image: radial-gradient(white 1px, transparent 1px);
+  background-size: 20px 20px;
+  animation: twinkle 4s infinite linear;
+  pointer-events: none;
+  z-index: 0;
+}
+@keyframes twinkle {
+  0%, 100% { opacity: 0.8; }
+  50% { opacity: 0.3; }
+}
+
+/* ☁️ Moving Clouds */
+.cloud {
+  background: #fff;
+  border-radius: 50%;
+  position: absolute;
+  opacity: 0.4;
+}
+.cloud1 {
+  width: 200px;
+  height: 60px;
+  top: 80px;
+  left: -100px;
+  animation: moveCloud1 60s linear infinite;
+}
+.cloud2 {
+  width: 150px;
+  height: 50px;
+  top: 150px;
+  left: -150px;
+  animation: moveCloud2 80s linear infinite;
+}
+@keyframes moveCloud1 {
+  0% { left: -200px; }
+  100% { left: 120%; }
+}
+@keyframes moveCloud2 {
+  0% { left: -200px; }
+  100% { left: 100%; }
+}
+
+/* 💌 Envelope Wrapper */
+.envelope-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding-top: 60px;
+  position: relative;
+  z-index: 1;
+  flex-direction: column;
+}
+
+/* 💖 Envelope Box */
+#envelope {
+  position: relative;
+  width: 520px;
+  height: 360px;
+  background-color: #ffcce7;
+  border-radius: 20px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+  perspective: 1000px;
+  transition: transform 0.5s;
+}
+.front {
+  position: absolute;
+  width: 0;
+  height: 0;
+  z-index: 3;
+}
+.flap {
+  border-left: 260px solid transparent;
+  border-right: 260px solid transparent;
+  border-bottom: 140px solid transparent;
+  border-top: 200px solid #ffb6d9;
+  transform-origin: top;
+  border-radius: 10px;
+}
+.pocket {
+  border-left: 260px solid #ffd6ec;
+  border-right: 260px solid #ffd6ec;
+  border-bottom: 180px solid #ffa7ce;
+  border-top: 120px solid transparent;
+  border-radius: 0 0 20px 20px;
+}
+
+/* 📝 Letter */
+.letter {
+  background-color: #fff0f6;
+  border: 3px dashed #ff75ac;
+  padding: 10px;
+  border-radius: 15px;
+  font-size: 26px;
+  box-shadow: 0 8px 10px rgba(0, 0, 0, 0.15);
+  width: 84%;
+  height: 72%;
+  top: 4%;
+  margin: auto;
+  position: absolute;
+  text-align: center;
+  transition: transform 0.6s ease, box-shadow 0.5s ease;
+  z-index: 2;
+}
+.open .letter {
+  transform: translateY(-240px) scale(1.1);
+  z-index: 3;
+  animation: popLetter 0.6s ease-out;
+  box-shadow: 0 0 30px #ff85c1, 0 0 20px #ffcce7;
+}
+@keyframes popLetter {
+  0% { transform: scale(0.9); opacity: 0; }
+  50% { transform: scale(1.2); opacity: 1; }
+  100% { transform: scale(1.1); }
+}
+
+/* 💬 Letter Content */
+.message-text {
+  font-size: 40px;
+  font-weight: bold;
+  color: #ff3c88;
+  margin-bottom: 20px;
+}
+.message-text .emojis-inline {
+  font-size: 50px;
+  margin-top: 10px;
+}
+.image-gallery {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.image-gallery img {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  margin: 6px;
+  border-radius: 12px;
+}
+
+/* 💥 Envelope Animation */
+.open .flap {
+  transform: rotateX(220deg);
+  transition: transform 0.6s ease;
+  z-index: 1;
+}
+.close .flap {
+  transform: rotateX(0deg);
+  transition: transform 0.4s 0.6s ease;
+  z-index: 5;
+}
+.close .letter {
+  transform: translateY(0);
+  z-index: 1;
+}
+
+/* 🐱 Floating Emojis */
+.emojis {
+  position: absolute;
+  top: 100px;
+  left: 0;
+  width: 100%;
+  height: 600px;
+  pointer-events: none;
+  overflow: visible;
+  z-index: 5;
+}
+.emoji {
+  position: absolute;
+  font-size: 48px;
+  opacity: 0.9;
+  animation: floatEmoji 6s linear infinite;
+}
+.emoji:nth-child(1) { left: 10%; animation-delay: 0s; }
+.emoji:nth-child(2) { left: 30%; animation-delay: 1s; }
+.emoji:nth-child(3) { left: 50%; animation-delay: 2s; }
+.emoji:nth-child(4) { left: 70%; animation-delay: 3s; }
+.emoji:nth-child(5) { left: 90%; animation-delay: 4s; }
+@keyframes floatEmoji {
+  0%   { transform: translateY(0) scale(1); opacity: 1; }
+  50%  { transform: translateY(-180px) scale(1.4) rotate(20deg); opacity: 0.8; }
+  100% { transform: translateY(-500px) scale(0.8) rotate(-20deg); opacity: 0; }
+}
+
+/* 🎀 Open/Close Buttons */
+/* 🎀 Buttons Positioned Closer to Envelope */
+.reset {
+  text-align: center;
+  margin-top: -100px;  /* Pull the buttons upward */
+  position: relative;
+  z-index: 10;
+}
+
+.reset button {
+  font-weight: 800;
+  background-color: #ff85a2;
+  border: none;
+  border-radius: 8px;
+  color: white;
+  padding: 12px;
+  margin: 8px 10px;
+  font-size: 16px;
+  min-width: 140px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.reset button:hover {
+  background-color: #ff4072;
+  transform: scale(1.08);
+  box-shadow: 0 0 12px rgba(255, 128, 162, 0.5);
+}
+/* 📱 Mobile Responsive Adjustments */
+@media (max-width: 600px) {
+  .envelope-wrapper {
+    padding-top: 30px;
+  }
+
+  #envelope {
+    width: 320px;
+    height: 220px;
+  }
+
+  .flap {
+    border-left: 160px solid transparent;
+    border-right: 160px solid transparent;
+    border-top: 130px solid #ffb6d9;
+  }
+
+  .pocket {
+    border-left: 160px solid #ffd6ec;
+    border-right: 160px solid #ffd6ec;
+    border-bottom: 130px solid #ffa7ce;
+    border-top: 80px solid transparent;
+  }
+
+  .letter {
+    font-size: 20px;
+    padding: 20px;
+    width: 80%;
+    height: 69%;
+  }
+
+  .message-text {
+    font-size: 28px;
+  }
+
+  .message-text .emojis-inline {
+    font-size: 36px;
+  }
+
+  .image-gallery img {
+    width: 60px;
+    height: 70px;
+  }
+
+  .reset {
+    margin-top: -150px;
+  }
+
+  .reset button {
+    font-size: 14px;
+    min-width: 120px;
+    padding: 10px;
+  }
+
+  .emoji {
+    font-size: 32px;
+  }
+}
+

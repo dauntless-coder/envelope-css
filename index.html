@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>💌 from dauntless coder</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cherry+Bomb+One&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ✨ Stars & Clouds -->
+  <div class="floating-stars"></div>
+  <div class="cloud cloud1"></div>
+  <div class="cloud cloud2"></div>
+
+  <!-- 🔊 Audio Surprise -->
+  <audio id="song" src="surprise.mp3" preload="auto"></audio>
+
+  <!-- 💌 Envelope Wrapper -->
+  <div class="envelope-wrapper">
+    <div id="envelope" class="close">
+      <div class="front flap"></div>
+      <div class="front pocket"></div>
+
+      <div class="letter">
+        <div class="message-text">YOU EAT WHAT!?! 😼👅🎀</div>
+        <div class="image-gallery">
+          <img src="cat1.jpg" alt="Cat 1" />
+          <img src="cat2.jpg" alt="Cat 2" />
+          <img src="cat3.jpg" alt="Cat 3" />
+        </div>
+      </div>
+
+      <!-- 🐱 Emojis Flying -->
+      <div class="emojis">
+        
+        <div class="emoji">🌈</div>
+        <div class="emoji">💜</div>
+        <div class="emoji">🎀</div>
+        <div class="emoji">😼</div>
+        <div class="emoji">👅</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 🎀 Buttons -->
+  <div class="reset">
+    <button id="open">Open</button>
+    <button id="close">Close</button>
+  </div>
+
+  <!-- 📜 JavaScript -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const envelope = document.getElementById("envelope");
+      const btnOpen = document.getElementById("open");
+      const btnClose = document.getElementById("close");
+      const song = document.getElementById("song");
+
+      let stopTimeout;
+
+      function openEnvelope() {
+        envelope.classList.add("open");
+        envelope.classList.remove("close");
+
+        // Start song at 47s
+        const start = 47;
+        const end = 90;
+
+        song.currentTime = start;
+        song.play();
+
+        clearTimeout(stopTimeout);
+        stopTimeout = setTimeout(() => {
+          song.pause();
+          song.currentTime = 0;
+        }, (end - start) * 1000);
+      }
+
+      function closeEnvelope() {
+        envelope.classList.add("close");
+        envelope.classList.remove("open");
+        song.pause();
+        song.currentTime = 0;
+        clearTimeout(stopTimeout);
+      }
+
+      envelope.addEventListener("click", openEnvelope);
+      btnOpen.addEventListener("click", openEnvelope);
+      btnClose.addEventListener("click", closeEnvelope);
+    });
+  </script>
+</body>
+</html>
